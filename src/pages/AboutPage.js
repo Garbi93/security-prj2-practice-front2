@@ -1,11 +1,11 @@
 import React from 'react';
 
-function MainPage(props) {
+function AboutPage() {
   return (
     <div className={"text-3xl"}>
-      <div>Main Page</div>
+      About Page
     </div>
   );
 }
 
-export default MainPage;
+export default AboutPage;
