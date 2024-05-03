@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import useCustomMove from "../../hooks/useCustomMove";
 import {getList} from "../../api/todoApi";
+import PageComponent from "../common/PageComponent";
 
 const initState = {
     dtoList:[],
@@ -17,7 +18,7 @@ const initState = {
 
 function ListComponent(props) {
 
-    const {page, size} = useCustomMove();
+    const {page, size, moveToList, refresh} = useCustomMove();
 
     const [serverData, setServerData] = useState(initState);
 
@@ -28,7 +29,7 @@ function ListComponent(props) {
             setServerData(data);
         });
 
-    }, [page, size]);
+    }, [page, size, refresh]);
 
     return (
       <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
@@ -56,6 +57,9 @@ function ListComponent(props) {
                 </div>
               )}
           </div>
+
+          <PageComponent serverData={serverData} movePage={moveToList}/>
+
       </div>
     );
 }
