@@ -1,11 +1,5 @@
 import React from 'react';
 
-const initState = {
-    title: '',
-    content: '',
-    dueDate: '',
-}
-
 function ResultModal({title, content, callbackFn}) {
     return (
       <div className={`fixed top-0 left-0 z-[1055] flex h-full w-full justify-center bg-black bg-opacity-20`}>
