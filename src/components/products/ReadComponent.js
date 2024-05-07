@@ -20,22 +20,23 @@ function ReadComponent({pno}) {
 
     const [fetching, setFetching] = useState(false)
 
-    const {moveToList, moveToModify} = useCustomMove();
+    const {moveToList, moveToModify, page, size} = useCustomMove();
 
     useEffect(() => {
         setFetching(true);
         getOne(pno).then(data => {
-            setFetching(false);
+
             setProduct(data);
+            setFetching(false);
         })
 
     }, [pno]);
 
 
     return (
-      <div className = "border-2 border-sky-200 mt-10 m-2 p-4">
+      <div className="border-2 border-sky-200 mt-10 m-2 p-4">
 
-          {fetching? <FetchingModal/> :<></>}
+          {fetching ? <FetchingModal/> : <></>}
 
           <div className="flex justify-center mt-10">
               <div className="relative mb-4 flex w-full flex-wrap items-stretch">
@@ -70,9 +71,9 @@ function ReadComponent({pno}) {
               </div>
           </div>
           <div className="w-full justify-center flex flex-col m-auto items-center">
-              {product.uploadFileNames.map( (imgFile, i) =>
+              {product.uploadFileNames.map((imgFile, i) =>
                 <img
-                  alt ="product"
+                  alt="product"
                   key={i}
                   className="p-4 w-1/2"
                   src={`${host}/api/products/view/${imgFile}`}/>
@@ -89,7 +90,7 @@ function ReadComponent({pno}) {
               <button
                 type="button"
                 className="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500"
-                onClick={moveToList}>
+                onClick={() => moveToList({page, size})}>
                   List
               </button>
           </div>
