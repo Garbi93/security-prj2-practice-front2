@@ -5,9 +5,6 @@ const BasicMenu = () => {
 
   const loginState = useSelector(state => state.loginSlice);
 
-  console.log("loginState....: ");
-  console.log(loginState);
-
 
   return (
     <nav id='navbar' className=" flex bg-blue-300">
