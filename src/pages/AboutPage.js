@@ -1,12 +1,20 @@
 import React from 'react';
 import BasicLayout from "../layouts/BasicLayout";
+import useCustomLogin from "../hooks/useCustomLogin";
 
 function AboutPage() {
-  return (
-    <BasicLayout>
-      <div className={"text-3xl"}>About Page</div>
-    </BasicLayout>
-  );
+
+    const {isLogin, moveToLoginReturn} = useCustomLogin();
+
+    if (!isLogin) {
+        return moveToLoginReturn();
+    }
+
+    return (
+      <BasicLayout>
+          <div className={"text-3xl"}>About Page</div>
+      </BasicLayout>
+    );
 }
 
 export default AboutPage;

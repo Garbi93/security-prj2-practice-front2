@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {loginPost} from "../api/memberApi";
+import {setCookie} from "../util/cookiUtil";
 
 
 const initState = {
@@ -29,6 +30,11 @@ const loginSlice = createSlice({
             console.log("fulfilled")
 
             const payload = action.payload;
+
+            if (!payload.error) {
+                // 쿠키에 로그인 정보 JSON 타입으로 저장 하기
+                setCookie("member", JSON.stringify(payload), 1);
+            }
 
             return payload;
 
