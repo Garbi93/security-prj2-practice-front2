@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux"
-import {loginPostAsync} from "../../slices/loginSlice";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const initState = {
     email: '',
@@ -11,7 +10,7 @@ function LoginComponent(props) {
 
     const [loginParam, setLoginParam] = useState({...initState});
 
-    const dispatch = useDispatch();
+    const {doLogin, moveToPath} = useCustomLogin();
 
 
     const handleChange = (e) => {
@@ -22,9 +21,15 @@ function LoginComponent(props) {
     }
 
     const handleClickLogin = (e) => {
-        // dispatch(login(loginParam));
 
-        dispatch(loginPostAsync(loginParam));
+        doLogin(loginParam).then(data => {
+            if (data.error) {
+                alert("이메일과 패스워드를 확인해 주세요");
+            } else {
+                moveToPath("/");
+            }
+        })
+
     }
 
     return (
