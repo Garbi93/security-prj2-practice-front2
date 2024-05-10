@@ -21,7 +21,7 @@ function KakaoRedirectPage(props) {
 
             getMemberWithAccessToken(accessToken).then(memberInfo => {
                 console.log("-----------------------------")
-                console.log(memberInfo)
+                // console.log(memberInfo)
 
                 dispatch(login(memberInfo));
 
