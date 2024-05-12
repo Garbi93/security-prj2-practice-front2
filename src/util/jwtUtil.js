@@ -11,7 +11,7 @@ const refreshJWT = async (accessToken, refreshToken) => {
 
     const res = await axios.get(`${host}/api/member/refresh?refreshToken=${refreshToken}`, header);
 
-    console.log(res.data);
+    // console.log(res.data); 토큰 주석 처리
 
     return res.data;
 
@@ -38,7 +38,7 @@ const beforeReq = (config) => {
 
     const {accessToken} = memberInfo;
 
-    console.log("--------------------------------" + accessToken);
+    // console.log("--------------------------------" + accessToken); 토큰 주석 처리
 
     config.headers.Authorization = `Bearer ${accessToken}`;
 
