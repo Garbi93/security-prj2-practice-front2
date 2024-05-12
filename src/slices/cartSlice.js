@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {getCartItems} from "../api/cartApi";
+import {getCartItems, postChangeCart} from "../api/cartApi";
 
 
 export const getCartItemsAsync = createAsyncThunk('getCartItemsAsync', () => {
@@ -8,7 +8,7 @@ export const getCartItemsAsync = createAsyncThunk('getCartItemsAsync', () => {
 
 export const postChangeCartAsync = createAsyncThunk('postChangeCartAsync', (param) => {
 
-    return postChangeCartAsync(param);
+    return postChangeCart(param);
 });
 
 const initState = [];
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
         })
           .addCase(postChangeCartAsync.fulfilled, (state, action) => {
 
-              console.log("postChangeCartAsync.fulfilled")
+              console.log("postChangeCartAsync.fulfilled");
 
               return action.payload;
 
